@@ -13,12 +13,42 @@ module.exports = function (app) {
                 const $ = cheerio.load(response.data);
                 $('article.item').each(function (i, element) {
                     let result = {};
-                    // result.headline = $(this)
-                    //     .children('whatever element')
-                    //     .text();
-                    // result.summary = $(this)
-                    //     .children()
-                    //     .text()
+
+                    // article date
+                    result.date = $(this)
+                        .children('div.item-info-wrap')
+                        .children('div.item-info')
+                        .children('p.teaser')
+                        .children('a')
+                        .children('time')
+                        .text()
+                        .trim()
+                        .slice(0, -1);
+
+                    // article headline
+                    result.headline = $(this)
+                        .children('div.item-info-wrap')
+                        .children('div.item-info')
+                        .children('h2')
+                        .text()
+
+                    // removing time from a element
+                    $(this)
+                        .children('div.item-info-wrap')
+                        .children('div.item-info')
+                        .children('p.teaser')
+                        .children('a')
+                        .children('time').remove()
+
+                    // article summary
+                    result.summary = $(this)
+                        .children('div.item-info-wrap')
+                        .children('div.item-info')
+                        .children('p.teaser')
+                        .children('a')
+                        .text()
+
+                    // article link
                     result.link = $(this)
                         .children('div.item-image')
                         .children('div.imagewrap')
