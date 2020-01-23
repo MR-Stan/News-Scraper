@@ -1,9 +1,12 @@
 // Dependencies
 // ----------------------------------------------------
 const express = require('express');
-
+const mongoose = require('mongoose');
 
 // ----------------------------------------------------
+
+// Setting the port
+const PORT = process.env.PORT || 3000;
 
 // Initialize express
 const app = express();
@@ -21,8 +24,10 @@ app.use(express.json());
 app.use(express.static('public'));
 // ----------------------------------------------------
 
-// Setting the port
-const PORT = process.env.PORT || 3000;
+// Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+
+
 
 app.listen(PORT, function () {
     console.log(

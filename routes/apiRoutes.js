@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const cheerio = require('cheerio');
 
-const db = require('../db');
+const db = require('../models');
 
 module.exports = function (app) {
     // need actual articles
@@ -11,16 +11,17 @@ module.exports = function (app) {
             //console.log(response.data);
             const $ = cheerio.load(response.data);
             let results = [];
-            $('article').each(function (i, element) {
-                results.push({
-                    // headline
-                    // summary
-                    // url
-                    // additional information
-                    // user: $(element).attr('data-screen-name'),
-                    // tweet_id: $(element).attr('data-tweet-id'),
-                    // tweet: $(element).find('.js-tweet-text').text()
-                });
+            $('article.item').each(function (i, element) {
+                // results.push({
+                //     headline
+                //     summary
+                //     url
+                //     additional information
+                //     user: $(element).attr('data-screen-name'),
+                //     tweet_id: $(element).attr('data-tweet-id'),
+                //     tweet: $(element).find('.js-tweet-text').text()
+                // });
+                console.log(element);
             });
             // db.scraper.insert(results);
         })
