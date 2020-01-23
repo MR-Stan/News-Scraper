@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Creating a new object from the Schema constructor
-const articleSchema = new Schema({
+const ArticleSchema = new Schema({
     // Article headline
     headline: {
         type: String,
@@ -22,3 +22,9 @@ const articleSchema = new Schema({
         required: true
     }
 });
+
+// This creates our model from the above schema, using mongoose's model method
+const Article = mongoose.model("Article", ArticleSchema);
+
+// Export the Article model
+module.exports = Article;
