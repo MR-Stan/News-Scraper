@@ -21,8 +21,10 @@ app.use(express.static('public'));
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
-
-// Routes
+// drop database
+// mongoose.connect("mongodb://localhost/unit18Populater", function () {
+//     mongoose.connection.db.dropDatabase();
+// });
 // ----------------------------------------------------
 require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);

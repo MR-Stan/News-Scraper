@@ -23,14 +23,15 @@ module.exports = function (app) {
                         .children('time')
                         .text()
                         .trim()
-                        .slice(0, -1);
+                        .slice(0, -1)
+                        .trim();
 
                     // article headline
                     result.headline = $(this)
                         .children('div.item-info-wrap')
                         .children('div.item-info')
                         .children('h2')
-                        .text()
+                        .text();
 
                     // removing time from a element
                     $(this)
@@ -38,7 +39,8 @@ module.exports = function (app) {
                         .children('div.item-info')
                         .children('p.teaser')
                         .children('a')
-                        .children('time').remove()
+                        .children('time')
+                        .remove();
 
                     // article summary
                     result.summary = $(this)
@@ -46,22 +48,22 @@ module.exports = function (app) {
                         .children('div.item-info')
                         .children('p.teaser')
                         .children('a')
-                        .text()
+                        .text();
 
                     // article link
                     result.link = $(this)
                         .children('div.item-image')
                         .children('div.imagewrap')
                         .children('a')
-                        .attr('href')
+                        .attr('href');
 
-                    // db.Article.create(result)
-                    //     .then(function (dbArticle) {
-                    //         console.log(dbArticle);
-                    //     })
-                    //     .catch(function (err) {
-                    //         console.log(err);
-                    //     });
+                    db.Article.create(result)
+                        .then(function (dbArticle) {
+                            console.log(dbArticle);
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
                 });
             })
             .catch(function (error) {
@@ -72,7 +74,7 @@ module.exports = function (app) {
 
     // Get all articles from db
     app.get("/articles", function (req, res) {
-        db.Article.find({})
+        db.Article.find({}).sort('_id')
             .then(function (dbArticle) {
                 res.json(dbArticle);
             })
