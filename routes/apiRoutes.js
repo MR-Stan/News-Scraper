@@ -4,14 +4,14 @@ const cheerio = require('cheerio');
 
 const db = require('../models');
 
-module.exports = function (app) {
+module.exports = app => {
 
     // Scrape web and add articles to db
-    app.get('/scrape', function (req, res) {
+    app.get('/scrape', (req, res) => {
         axios.get('https://www.npr.org/sections/technology/')
-            .then(function (response) {
+            .then(response => {
                 const $ = cheerio.load(response.data);
-                $('article.item').each(function (i, element) {
+                $('article.item').each((i, element) => {
                     let result = {};
 
                     // article date
@@ -58,27 +58,27 @@ module.exports = function (app) {
                         .attr('href');
 
                     db.Article.create(result)
-                        .then(function (dbArticle) {
+                        .then(dbArticle => {
                             console.log(dbArticle);
                         })
-                        .catch(function (err) {
+                        .catch(err => {
                             console.log(err);
                         });
                 });
             })
-            .catch(function (error) {
+            .catch(error => {
                 console.log(error);
             })
         res.send('Scrape complete');
     });
 
     // Get all articles from db
-    app.get("/articles", function (req, res) {
+    app.get("/articles", (req, res) => {
         db.Article.find({}).sort('_id')
-            .then(function (dbArticle) {
+            .then(dbArticle => {
                 res.json(dbArticle);
             })
-            .catch(function (err) {
+            .catch(err => {
                 res.json(err);
             });
     });
