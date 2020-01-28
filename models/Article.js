@@ -24,13 +24,25 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    
+
     // Article link
     link: {
         type: String,
         required: true
-    }
+    },
 
+    note: {
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Note'
+        }],
+        article: String
+    },
+
+    saved: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // This creates our model from the above schema, using mongoose's model method
