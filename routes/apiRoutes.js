@@ -65,23 +65,56 @@ module.exports = app => {
                             console.log(err);
                         });
                 });
-            })
-            .catch(error => {
+            }).catch(error => {
                 console.log(error);
             })
         res.send('Scrape complete');
     });
 
     // Get all articles from db
-    app.get("/articles", (req, res) => {
+    app.get("/display/scraped", (req, res) => {
         db.Article.find({}).sort('_id')
             .then(dbArticle => {
                 res.json(dbArticle);
-            })
-            .catch(err => {
+            }).catch(err => {
                 res.json(err);
             });
     });
 
+    // Add saved article to db
+    app.put('/save/:articleId', (req, res) => {
+        db.Article.findByIdAndUpdate(req.params.articleId, {
+            $set: {
+                saved: true
+            }
+        }).then(data => {
+            res.json(data);
+        }).catch(err => {
+            res.json(err);
+        });
+    });
 
+    // Remove saved article from db
+    app.put('/remove/:articleId', (req, res) => {
+        db.Article.findByIdAndUpdate(req.params.articleId, {
+            $set: {
+                saved: false
+            }
+        }).then(data => {
+            res.json(data);
+        }).catch(err => {
+            res.json(err);
+        });
+    });
+
+    // Get all saved articles from db
+    app.get('/display/saved', (req, res) => {
+        db.Article.find({
+            saved: true
+        }).then(data => {
+            res.json(data);
+        }).catch(err => {
+            res.json(err);
+        });
+    });
 }

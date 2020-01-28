@@ -28,8 +28,24 @@
         <!-- <button class="btn" id="name-sort">Sort By Date (Newest)</button> -->
     </div>
 
-    <div id="articles"></div>
-    <div id="notes"></div>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Headline</th>
+                        <th scope="col">Summary</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                </thead>
+                <tbody id="articleTable">
+                    <!-- scraped articles -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <div id="notes"></div> -->
     <script src="./app.js"></script>
 </body>
 
