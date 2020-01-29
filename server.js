@@ -19,8 +19,10 @@ app.use(express.json());
 app.use(express.static('public'));
 // ----------------------------------------------------
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // drop database
 // mongoose.connect("mongodb://localhost/unit18Populater", function () {
 //     mongoose.connection.db.dropDatabase();
