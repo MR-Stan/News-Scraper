@@ -11,7 +11,8 @@ module.exports = app => {
         axios.get('https://www.npr.org/sections/technology/')
             .then(response => {
                 const $ = cheerio.load(response.data);
-                $('article.item').each((i, element) => {
+                $('article.item').each(function (i, element) {
+                    console.log(response.data);
                     let result = {};
 
                     // article date
@@ -75,6 +76,7 @@ module.exports = app => {
     app.get("/display/scraped", (req, res) => {
         db.Article.find({}).sort('_id')
             .then(dbArticle => {
+                console.log('Articles from db: ' + dbArticle);
                 res.json(dbArticle);
             }).catch(err => {
                 res.json(err);

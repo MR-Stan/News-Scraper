@@ -7,7 +7,7 @@ $('#scrapeBtn').on('click', _ => {
     }).then(response => {
 
         for (let i = 0; i < response.length; i++) {
-            
+
             // creating save button for each article
             const saveBtn = $('<button>')
                 .addClass('saveBtn')
@@ -26,7 +26,7 @@ $('#scrapeBtn').on('click', _ => {
     });
 });
 
-$(document).on('click', '.saveBtn', function() {
+$(document).on('click', '.saveBtn', function () {
 
     const articleId = $(this).attr('id');
     console.log(articleId);

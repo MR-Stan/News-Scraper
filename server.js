@@ -26,12 +26,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraper";
 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // drop database
-// mongoose.connect("mongodb://localhost/unit18Populater", function () {
+// mongoose.connect("mongodb://localhost/mongoScraper", function () {
 //     mongoose.connection.db.dropDatabase();
 // });
 // ----------------------------------------------------
