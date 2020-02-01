@@ -1,14 +1,10 @@
 <div class="container-fluid">
     <h3 class="header">News Scraper</h3>
-    <div id="buttons">
-        <button class="btn" id="scrapeBtn">Scrape Articles</button>
-        <!-- <button class="btn" id="name-sort">Sort By Date (Newest)</button> -->
-    </div>
 
     <div class="row">
-        <div class="col-sm-6">
-            <table class="table table-striped">
-                <thead>
+        <div class="col-sm-6 table-responsive">
+            <table class="table table-striped table-dark">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Headline</th>
@@ -16,7 +12,7 @@
                         <th scope="col">Link</th>
                     </tr>
                 </thead>
-                <tbody id="articleTable">
+                <tbody id="articleTable" class="table-striped">
                     <!-- scraped articles -->
                 </tbody>
             </table>

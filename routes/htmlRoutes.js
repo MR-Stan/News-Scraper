@@ -9,4 +9,9 @@ module.exports = app => {
     app.get('/saved', (req, res) => {
         res.render('saved');
     });
+
+    // 404
+    app.get('*', (req, res) => {
+        res.render('404');
+    });
 }
