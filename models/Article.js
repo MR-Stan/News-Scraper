@@ -16,13 +16,14 @@ const ArticleSchema = new Schema({
     // Article headline
     headline: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     // Article summary
     summary: {
         type: String,
-        required: true
+        required: true,
     },
 
     // Article link

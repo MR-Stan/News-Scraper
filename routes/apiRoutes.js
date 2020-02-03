@@ -10,6 +10,7 @@ module.exports = app => {
     app.get('/scrape', (req, res) => {
         axios.get('https://www.npr.org/sections/technology/')
             .then(response => {
+
                 const $ = cheerio.load(response.data);
                 $('article.item').each(function (i, element) {
 
@@ -58,13 +59,19 @@ module.exports = app => {
                         .children('a')
                         .attr('href');
 
-                    db.Article.create(result)
-                        .then(dbArticle => {
-                            //console.log(dbArticle);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
+                    db.Article.findOne(result, function (err, res) {
+                        if (err) console.log(err);
+                        if (res) console.log(res + 'already exists');
+                        else {
+                            db.Article.create(result)
+                                .then(dbArticle => {
+                                    console.log(dbArticle);
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                });
+                        }
+                    });
                 });
             }).catch(error => {
                 console.log(error);
@@ -74,7 +81,7 @@ module.exports = app => {
 
     // Get all articles from db
     app.get("/display/scraped", (req, res) => {
-        db.Article.find({}).sort('_id')
+        db.Article.find({}).sort('-date')
             .then(dbArticle => {
                 res.json(dbArticle);
             }).catch(err => {

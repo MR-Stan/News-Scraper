@@ -1,13 +1,13 @@
 // display scraped articles when page loads
-$( _ => {
+$(document).ready(function () {
 
     $.ajax({
         type: 'GET',
         url: '/display/scraped'
     }).then(response => {
-
+        console.log(response);
         for (let i = 0; i < response.length; i++) {
-            
+
             // creating save button for each article
             const saveBtn = $('<button>')
                 .addClass('saveBtn')
@@ -26,15 +26,32 @@ $( _ => {
     });
 });
 
-$(document).on('click', '.saveBtn', function() {
+// Save article
+$('saveBtn').on('click', function () {
 
     const articleId = $(this).attr('id');
-    console.log(articleId);
+    // console.log(articleId);
 
     $.ajax({
         type: 'PUT',
         url: '/save/' + articleId
     }).then(response => {
-        console.log(JSON.stringify(response));
+        // console.log(JSON.stringify(response));
+        // location.reload();
+    });
+});
+
+// Remove saved article
+$('removeBtn').on('click', function () {
+
+    const articleId = $(this).attr('id');
+    // console.log(articleId);
+
+    $.ajax({
+        type: 'PUT',
+        url: '/remove/' + articleId
+    }).then(response => {
+        // console.log(JSON.stringify(response));
+        // location.reload();
     });
 });
