@@ -96,7 +96,6 @@ module.exports = app => {
                 saved: true
             }
         }).then(data => {
-            console.log('Saved');
             res.json(data);
         }).catch(err => {
             res.json(err);
@@ -121,9 +120,58 @@ module.exports = app => {
         db.Article.find({
             saved: true
         }).then(data => {
-            res.redirect('saved');
+            res.json(data);
         }).catch(err => {
             res.json(err);
+        });
+    });
+
+
+    // Display article note
+    app.get('/notes/display/:articleId', function (req, res) {
+        db.Article.findById(req.params.articleId)
+            .populate('note')
+            .then(dbArticle => {
+                res.json(dbArticle);
+            })
+            .catch(err => {
+                res.json(err);
+            })
+    });
+
+    // Add note to article
+    app.post('/notes/new/:articleId', function (req, res) {
+        db.Note.create(req.body)
+            .then(dbNote => {
+                return db.Article.findOneAndUpdate({
+                    _id: req.params.articleId
+                },
+                    {
+                        $push: {
+                            note: dbNote._id
+                        }
+                    }
+                )
+            })
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+
+
+    // Update article note
+    app.put('/notes/update/:noteId', function (req, res) {
+        db.Note.findByIdAndUpdate();
+    });
+
+    // Remove note from article
+    app.delete('/notes/remove/:noteId', function (req, res) {
+        db.Note.findByIdAndRemove(req.params.noteId, (err, note) => {
+            if (err) console.log(err);
         });
     });
 }
