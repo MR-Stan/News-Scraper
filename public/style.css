@@ -1,0 +1,10 @@
+body {
+    background: yellow;
+}
+
+#newTable {
+  height: 80vh !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+

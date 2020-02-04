@@ -96,6 +96,7 @@ module.exports = app => {
                 saved: true
             }
         }).then(data => {
+            console.log('Saved');
             res.json(data);
         }).catch(err => {
             res.json(err);
@@ -120,7 +121,7 @@ module.exports = app => {
         db.Article.find({
             saved: true
         }).then(data => {
-            res.json(data);
+            res.redirect('saved');
         }).catch(err => {
             res.json(err);
         });

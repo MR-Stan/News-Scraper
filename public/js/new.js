@@ -5,11 +5,13 @@ $(document).ready(function () {
         type: 'GET',
         url: '/display/scraped'
     }).then(response => {
-        console.log(response);
+
         for (let i = 0; i < response.length; i++) {
 
             // creating save button for each article
-            const saveBtn = $('<button>')
+            const saveBtn = $('<button type="button">')
+                .addClass('btn')
+                .addClass('btn-primary')
                 .addClass('saveBtn')
                 .text('Save Article')
                 .attr('id', response[i]._id);
@@ -27,10 +29,9 @@ $(document).ready(function () {
 });
 
 // Save article
-$('saveBtn').on('click', function () {
+$('#articleTable').on('click', '.saveBtn', function () {
 
     const articleId = $(this).attr('id');
-    // console.log(articleId);
 
     $.ajax({
         type: 'PUT',
@@ -41,17 +42,4 @@ $('saveBtn').on('click', function () {
     });
 });
 
-// Remove saved article
-$('removeBtn').on('click', function () {
 
-    const articleId = $(this).attr('id');
-    // console.log(articleId);
-
-    $.ajax({
-        type: 'PUT',
-        url: '/remove/' + articleId
-    }).then(response => {
-        // console.log(JSON.stringify(response));
-        // location.reload();
-    });
-});
