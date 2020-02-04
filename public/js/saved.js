@@ -9,11 +9,11 @@ $(document).ready(function () {
         for (let i = 0; i < response.length; i++) {
 
             // creating save button for each article
-            const saveBtn = $('<button type="button">')
+            const removeBtn = $('<button type="button">')
                 .addClass('btn')
-                .addClass('btn-primary')
+                .addClass('btn-danger')
                 .addClass('removeBtn')
-                .text('Remove Saved Article')
+                .text('Remove Article')
                 .attr('id', response[i]._id);
 
             // adding results to article table
@@ -23,7 +23,7 @@ $(document).ready(function () {
                 .append('<td>' + response[i].headline + '</td>')
                 .append('<td>' + response[i].summary + '</td>')
                 .append('<td>' + response[i].link + '</td>')
-                .append(saveBtn);
+                .append(removeBtn);
         }
     });
 });
@@ -32,13 +32,11 @@ $(document).ready(function () {
 $('#savedTable').on('click', '.removeBtn', function () {
 
     const articleId = $(this).attr('id');
-    // console.log(articleId);
 
     $.ajax({
         type: 'PUT',
         url: '/remove/' + articleId
-    }).then(response => {
-        // console.log(JSON.stringify(response));
-        // location.reload();
+    }).then(_ => {
+        window.location.reload()
     });
 });

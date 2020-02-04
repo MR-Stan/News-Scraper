@@ -5,7 +5,7 @@ $(document).ready(function () {
         type: 'GET',
         url: '/scrape',
         success: function () {
-    
+
             $.ajax({
                 type: 'GET',
                 url: '/display/scraped'
@@ -29,10 +29,16 @@ $(document).ready(function () {
                         .append('<td>' + response[i].summary + '</td>')
                         .append('<td>' + response[i].link + '</td>')
                         .append(saveBtn);
+
+                    if (response[i].saved) {
+                        $(saveBtn).toggleClass('btn-primary btn-success')
+                            .text('Saved')
+                            .attr('disabled', true);
+                    }
                 }
             });
         }
-    });
+    })
 });
 
 // Save article
@@ -40,12 +46,13 @@ $('#articleTable').on('click', '.saveBtn', function () {
 
     const articleId = $(this).attr('id');
 
+    $(this).toggleClass('btn-primary btn-success')
+        .text('Saved')
+        .attr('disabled', true);
+
     $.ajax({
         type: 'PUT',
         url: '/save/' + articleId
-    }).then(response => {
-        // console.log(JSON.stringify(response));
-        // location.reload();
     });
 });
 
