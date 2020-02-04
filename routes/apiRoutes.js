@@ -61,11 +61,11 @@ module.exports = app => {
 
                     db.Article.findOne(result, function (err, res) {
                         if (err) console.log(err);
-                        if (res) console.log(res + 'already exists');
+                        //if (res) console.log(res + ' already exists');
                         else {
                             db.Article.create(result)
                                 .then(dbArticle => {
-                                    console.log(dbArticle);
+                                    //console.log(dbArticle);
                                 })
                                 .catch(err => {
                                     console.log(err);
@@ -160,8 +160,6 @@ module.exports = app => {
                 res.json(err);
             });
     });
-
-
 
     // Update article note
     app.put('/notes/update/:noteId', function (req, res) {
