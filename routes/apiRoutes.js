@@ -127,7 +127,7 @@ module.exports = app => {
     });
 
 
-    // Display article note
+    // Display article notes
     app.get('/notes/display/:articleId', function (req, res) {
         db.Article.findById(req.params.articleId)
             .populate('note')
@@ -161,7 +161,7 @@ module.exports = app => {
             });
     });
 
-    // Update article note
+    // Update article notes
     app.put('/notes/update/:noteId', function (req, res) {
         db.Note.findByIdAndUpdate();
     });

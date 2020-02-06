@@ -32,22 +32,22 @@ const ArticleSchema = new Schema({
         required: true
     },
 
-    note: {
-        type: [{
+    // Array of notes
+    note: [{
+        type: {
             type: Schema.Types.ObjectId,
             ref: 'Note'
-        }],
+        },
         article: String
-    },
+    }],
 
+    // Keeps track of whether or not the article's been saved
     saved: {
         type: Boolean,
         default: false
     }
 });
 
-// This creates our model from the above schema, using mongoose's model method
 const Article = mongoose.model("Article", ArticleSchema);
 
-// Export the Article model
 module.exports = Article;

@@ -15,10 +15,13 @@ $(document).ready(function () {
 
                     // creating save button for each article
                     const saveBtn = $('<button type="button">')
-                        .addClass('btn')
-                        .addClass('btn-primary')
-                        .addClass('saveBtn')
+                        .addClass('btn btn-primary saveBtn')
                         .text('Save Article')
+                        .attr('id', response[i]._id);
+
+                    const noteBtn = $('<button type="button">')
+                        .addClass('btn btn-primary noteBtn')
+                        .text('Notes')
                         .attr('id', response[i]._id);
 
                     // adding results to article table
@@ -28,6 +31,7 @@ $(document).ready(function () {
                         .append('<td>' + response[i].headline + '</td>')
                         .append('<td>' + response[i].summary + '</td>')
                         .append('<td>' + response[i].link + '</td>')
+                        .append(noteBtn)
                         .append(saveBtn);
 
                     if (response[i].saved) {
