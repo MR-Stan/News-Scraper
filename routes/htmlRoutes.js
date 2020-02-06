@@ -10,6 +10,10 @@ module.exports = app => {
         res.render('saved');
     });
 
+    // app.get('/notes', (req, res) => {
+    //     res.render('notes');
+    // });
+
     // 404
     app.get('*', (req, res) => {
         res.render('404');

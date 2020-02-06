@@ -1,5 +1,5 @@
 // display scraped articles when page loads
-$(document).ready(function () {
+$(function () {
 
     $.ajax({
         type: 'GET',
@@ -60,4 +60,16 @@ $('#articleTable').on('click', '.saveBtn', function () {
     });
 });
 
+// Open notes modal on Notes button click
+$('#articleTable').on('click', '.noteBtn', function () {
 
+    $('#notesModal').modal({
+        show: true,
+        backdrop: 'static', // prevents closing by clicking out of modal
+    });
+});
+
+$('#modalCloseBtn').on('click', function () {
+
+    $('#notesModal').modal('hide');
+});
