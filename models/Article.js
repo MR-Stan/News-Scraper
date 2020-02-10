@@ -32,6 +32,12 @@ const ArticleSchema = new Schema({
         required: true
     },
 
+    // Article image
+    image: {
+        type: String,
+        default: "https://medivizor.com/blog/wp-content/uploads/2014/12/Stack-of-journals3.jpg"
+    },
+
     // Array of notes
     note: [{
         type: {

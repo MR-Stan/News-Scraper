@@ -11,35 +11,37 @@ $(function () {
                 url: '/display/scraped'
             }).then(response => {
 
-                for (let i = 0; i < response.length; i++) {
+            //     for (let i = 0; i < response.length; i++) {
 
-                    // creating save button for each article
-                    const saveBtn = $('<button type="button">')
-                        .addClass('btn btn-primary saveBtn')
-                        .text('Save Article')
-                        .attr('id', response[i]._id);
+            //         // creating save button for each article
+            //         const saveBtn = $('<button type="button">')
+            //             .addClass('btn btn-primary saveBtn')
+            //             .text('Save Article')
+            //             .attr('id', response[i]._id);
 
-                    const noteBtn = $('<button type="button">')
-                        .addClass('btn btn-primary noteBtn')
-                        .text('Notes')
-                        .attr('id', response[i]._id);
+            //         const noteBtn = $('<button type="button">')
+            //             .addClass('btn btn-primary noteBtn')
+            //             .text('Notes')
+            //             .attr('id', response[i]._id);
 
-                    // adding results to article table
-                    $('#articleTable')
-                        .append('<tr/')
-                        .append('<td>' + response[i].date + '</td>')
-                        .append('<td>' + response[i].headline + '</td>')
-                        .append('<td>' + response[i].summary + '</td>')
-                        .append('<td>' + response[i].link + '</td>')
-                        .append(noteBtn)
-                        .append(saveBtn);
+            //         // adding results to article table
+            //         $('#articleTable')
+            //             .append('<tr/')
+            //             .append('<td>' + response[i].date + '</td>')
+            //             .append('<td>' + response[i].headline + '</td>')
+            //             .append('<td>' + response[i].summary + '</td>')
+            //             .append('<td>' + response[i].link + '</td>')
+            //             .append(noteBtn)
+            //             .append(saveBtn);
 
-                    if (response[i].saved) {
-                        $(saveBtn).toggleClass('btn-primary btn-success')
-                            .text('Saved')
-                            .attr('disabled', true);
-                    }
-                }
+            //         if (response[i].saved) {
+            //             $(saveBtn).toggleClass('btn-primary btn-success')
+            //                 .text('Saved')
+            //                 .attr('disabled', true);
+            //         }
+            //     }
+                
+                
             });
         }
     })
@@ -69,6 +71,7 @@ $('#articleTable').on('click', '.noteBtn', function () {
     });
 });
 
+// Hide modal on close button click
 $('#modalCloseBtn').on('click', function () {
 
     $('#notesModal').modal('hide');

@@ -1,22 +1,13 @@
 <div class="container-fluid">
     <h3 class="header">News Scraper</h3>
 
-    <div class="row">
-        <div class="col table-responsive" id="newTable">
-            <table class="table table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Headline</th>
-                        <th scope="col">Summary</th>
-                        <th scope="col">Link</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody id="articleTable" class="table-striped">
-                    <!-- scraped articles -->
-                </tbody>
-            </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                {{#each articles}}
+                {{> article}}
+                {{/each}}
+            </div>
         </div>
     </div>
 
@@ -24,13 +15,14 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Add note</button>
-                        <button type="button" class="btn btn-danger" id="modalCloseBtn">Close</button>
-                    </div>
-
+                <div class="modal-body" id="savedNotes">
+                    {{#each notes}}
+                    {{> note}}
+                    {{/each}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Add note</button>
+                    <button type="button" class="btn btn-danger" id="modalCloseBtn">Close</button>
                 </div>
             </div>
         </div>

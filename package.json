@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/MR-Stan/Mongo-Scraper.git"
   },
-  "author": "",
+  "author": "Mike Stanley",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MR-Stan/Mongo-Scraper/issues"

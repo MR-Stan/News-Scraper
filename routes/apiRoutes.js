@@ -59,9 +59,16 @@ module.exports = app => {
                         .children('a')
                         .attr('href');
 
+                    // article image
+                    result.image = $(this)
+                        .children('div.item-image')
+                        .children('div.imagewrap')
+                        .children('a')
+                        .children('img')
+                        .attr('src');
+
                     db.Article.findOne(result, function (err, res) {
                         if (err) console.log(err);
-                        //if (res) console.log(res + ' already exists');
                         else {
                             db.Article.create(result)
                                 .then(dbArticle => {
