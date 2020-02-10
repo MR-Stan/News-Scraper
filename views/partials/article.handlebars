@@ -1,14 +1,19 @@
-<div class="card">
-    <div class="card-header">
-        NPR Technology News
-    </div>
+<div class="card text-center mb-4" style="min-width: 18rem">
     <img class="card-img-top" src="{{this.image}}" target="_blank" alt={{this.headline}}>
     <div class="card-body">
-        <h5 class="card-title">{{this.headline}}</h5>
+        <h4 class="card-title">{{this.headline}} </h4>
+        <small>{{this.date}}</small>
+        <hr>
         <p class="card-text">{{this.summary}}</p>
-        <a href={{this.link}} class="btn btn-primary">{{this.headline}}</a>
     </div>
     <div class="card-footer">
-        <small class="text-muted">{{this.date}}</small>
+        <a href={{this.link}} class="btn btn-primary" target="_blank"><i class="fab fa-readme"></i> Read</a>
+        {{#if saved}}
+        <button class="btn btn-primary unsaveBtn" data-id={{this._id}}><i class="far fa-window-close"></i></i> Unsave</button>
+        {{/if}}
+        {{#unless saved}}
+<button class="btn btn-primary saveBtn" data-id={{this._id}}><i class="far fa-bookmark"></i> Save</button>
+        {{/unless}}
+        <button class="btn btn-primary noteBtn" data-id={{this._id}}><i class="fas fa-pen"></i> Notes</button>
     </div>
 </div>

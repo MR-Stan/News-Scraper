@@ -90,7 +90,11 @@ module.exports = app => {
     app.get("/display/scraped", (req, res) => {
         db.Article.find({}).sort('-date')
             .then(dbArticle => {
-                res.json(dbArticle);
+                // res.json(dbArticle);
+                res.render('index', {
+                    articles: dbArticle
+                })
+
             }).catch(err => {
                 res.json(err);
             });

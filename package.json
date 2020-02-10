@@ -25,5 +25,7 @@
     "mongoose": "^5.8.9",
     "morgan": "^1.9.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "handlebars": "^4.5.0"
+  }
 }

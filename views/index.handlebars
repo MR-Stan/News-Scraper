@@ -1,14 +1,9 @@
 <div class="container-fluid">
-    <h3 class="header">News Scraper</h3>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                {{#each articles}}
-                {{> article}}
-                {{/each}}
-            </div>
-        </div>
+    <div class="card-deck">
+        {{#each articles}}
+        {{> article}}
+        {{/each}}
     </div>
 
     <div class="modal inmodal fade" id="notesModal" data-keyboard="false" tabindex="-1" role="dialog"

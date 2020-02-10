@@ -6,29 +6,7 @@ $(document).ready(function () {
         url: '/display/saved'
     }).then(response => {
 
-        // for (let i = 0; i < response.length; i++) {
 
-        //     // creating save button for each article
-        //     const removeBtn = $('<button type="button">')
-        //         .addClass('btn btn-danger removeBtn')
-        //         .text('Remove Saved')
-        //         .attr('id', response[i]._id);
-
-        //     const noteBtn = $('<button type="button">')
-        //         .addClass('btn btn-primary noteBtn')
-        //         .text('Notes')
-        //         .attr('id', response[i]._id);
-
-        //     // adding results to article table
-        //     $('#savedTable')
-        //         .append('<tr/')
-        //         .append('<td>' + response[i].date + '</td>')
-        //         .append('<td>' + response[i].headline + '</td>')
-        //         .append('<td>' + response[i].summary + '</td>')
-        //         .append('<td>' + response[i].link + '</td>')
-        //         .append(noteBtn)
-        //         .append(removeBtn);
-        // }
     });
 });
 
