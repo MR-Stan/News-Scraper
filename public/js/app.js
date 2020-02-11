@@ -48,6 +48,7 @@ $('.noteBtn').click(function () {
         type: 'GET',
         url: '/notes/display/' + articleId,
         success: function (response) {
+            console.log(response);
             $('#noteModal').modal();
             if (!response.length) {
                 $('#modalBody')
@@ -57,10 +58,10 @@ $('.noteBtn').click(function () {
                 $('.modal-body').empty();
                 for (let i = 0; i < response.length; i++) {
                     $('.modal-body')
-                        .append('<div class="card"/>')
+                        .prepend('<div class="card"/>')
                         .append('<div class="card-body"/>')
                         .append('<p class="card-text"/>')
-                        .text(response.body);
+                        .text(response[i]);
                 }
             }
         }
@@ -76,7 +77,7 @@ $('.addNoteBtn').click(function () {
     $.ajax({
         type: 'POST',
         url: '/notes/new/' + articleId,
-        data: body
+        data: { body: body }
 
     });
 });

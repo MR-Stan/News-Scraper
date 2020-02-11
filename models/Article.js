@@ -40,7 +40,7 @@ const ArticleSchema = new Schema({
 
     // Array of notes
     note: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "Note"
     }],
 

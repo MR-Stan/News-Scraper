@@ -140,16 +140,18 @@ module.exports = app => {
 
     // Add note to article
     app.post('/notes/new/:articleId', function (req, res) {
-        //const id = req.params.articleId;
-        db.Note.create(req.body)
+        const note = JSON.stringify(req.body.body);
+        console.log('-------' + note)
+        db.Note.create(note)
             .then(dbNote => {
+                console.log('------------------');
                 console.log(dbNote);
                 return db.Article.findOneAndUpdate({
-                    _id: dbNote._id
+                    _id: dbNote.id
                 },
                     {
                         $push: {
-                            note: dbNote._id
+                            note: note
                         }
                     }
                 )
