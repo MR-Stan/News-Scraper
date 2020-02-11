@@ -26,20 +26,25 @@
 
     {{{ body }}}
 
-
-    <div class="modal inmodal fade" id="noteModal" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body">
-                    
+                <div class="modal-body" id="modalBody">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary addNoteBtn">Add note</button>
-                    <button type="button" class="btn btn-danger modalCloseBtn" data-dismiss="modal">Close</button>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="bodyInput">Leave a note:</label>
+                        <textarea class="form-control" id="bodyInput" rows="5"></textarea>
+                </form>
+            </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary addNoteBtn">Save Note</button>
+                <button type="button" class="btn btn-danger modalCloseBtn" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+
 
     <script src="./js/app.js"></script>
 </body>

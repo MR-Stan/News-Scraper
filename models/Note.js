@@ -6,13 +6,7 @@ const Schema = mongoose.Schema;
 
 // Creating a new object from the Schema constructor
 const NoteSchema = new Schema({
-
-    // Note title
-    title: {
-        type: String,
-        required: true
-    },
-    
+   
     // Note body
     body: {
         type: String,

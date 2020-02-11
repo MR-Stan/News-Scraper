@@ -68,7 +68,7 @@ module.exports = app => {
                         .attr('src');
 
                     db.Article.findOne(result, function (err, res) {
-                            db.Article.create(result)
+                        db.Article.create(result)
                     }).catch(err => {
                         res.json(err);
                     })
@@ -131,14 +131,7 @@ module.exports = app => {
     app.get('/notes/display/:articleId', function (req, res) {
         db.Article.findById(req.params.articleId)
             .then(data => {
-                if (!data.length) {
-                    console.log('no note');   
-                }
-                else {
-                    for (let i = 0; i < data.length; i++) {
-                        
-                    }
-                }
+                res.json(data.note);
             })
             .catch(err => {
                 res.json(err);
@@ -147,6 +140,7 @@ module.exports = app => {
 
     // Add note to article
     app.post('/notes/new/:articleId', function (req, res) {
+        console.log(req.body);
         db.Note.create(req.body)
             .then(dbNote => {
                 return db.Article.findOneAndUpdate({
@@ -158,18 +152,14 @@ module.exports = app => {
                         }
                     }
                 )
+
             })
             .then(function (dbArticle) {
-                res.json(dbArticle);
+                // console.log(dbArticle);
             })
             .catch(function (err) {
                 res.json(err);
             });
-    });
-
-    // Update article notes
-    app.put('/notes/update/:noteId', function (req, res) {
-        db.Note.findByIdAndUpdate();
     });
 
     // Remove note from article

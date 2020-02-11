@@ -41,23 +41,44 @@ $('.unsaveBtn').click(function (e) {
 });
 
 // Open note modal and display notes
-$('.noteBtn').click(function () {    
+$('.noteBtn').click(function (e) {
+    e.preventDefault();
+    console.log('click');
+
     const articleId = $(this).attr('data-id');
+    currentArticle = articleId;
     $.ajax({
         type: 'GET',
-        url: '/notes/display/' + articleId  
+        url: '/notes/display/' + articleId,
+        success: function (response) {
+            $('#noteModal').modal();
+            if (!response.length) {
+                $('#modalBody')
+                    .append('<h5/>').text('There are no notes associated with this article.');
+            }
+            else {
+                for (let i = 0; i < data.length; i++) {
+                    $('.modal-body')
+                        .append('<div class="card"/>')
+                        .append('<div class="card-body"/>')
+                        .append('<p class="card-text"/>')
+                        .text(data.body);
+                }
+            }
+        }
+
     })
 });
 
-$('.addNoteBtn').click(function (e) {
-    e.preventDefault();
-    console.log('add note click');
+var currentArticle = '';
 
-
-    // const articleId = $(this).attr('data-id');
-    // $.ajax({
-    //     type: 'GET',
-    //     url: '/notes/display/' + articleId  
-    // })
+$('.addNoteBtn').click(function () {
+    const articleId = currentArticle;
+    console.log(articleId);
+    $.ajax({
+        type: 'GET',
+        url: '/notes/new/' + articleId,
+    });
+    // after save btn click clear fields 
 });
 
