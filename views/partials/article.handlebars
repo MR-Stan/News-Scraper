@@ -7,13 +7,14 @@
         <p class="card-text">{{this.summary}}</p>
     </div>
     <div class="card-footer">
-        <a href={{this.link}} class="btn btn-primary" target="_blank"><i class="fab fa-readme"></i> Read</a>
+        <a href={{this.link}} class="btn btn-info" target="_blank"><i class="fab fa-readme"></i> Read</a>
         {{#if saved}}
-        <button class="btn btn-primary unsaveBtn" data-id={{this._id}}><i class="far fa-window-close"></i></i> Unsave</button>
+        <button class="btn btn-danger unsaveBtn" data-id={{this._id}}><i class="far fa-window-close"></i>
+            Unsave</button>
         {{/if}}
         {{#unless saved}}
-<button class="btn btn-primary saveBtn" data-id={{this._id}}><i class="far fa-bookmark"></i> Save</button>
+        <button class="btn btn-success saveBtn" data-id={{this._id}}><i class="far fa-bookmark"></i> Save</button>
         {{/unless}}
-        <button class="btn btn-primary noteBtn" data-id={{this._id}}><i class="fas fa-pen"></i> Notes</button>
+        <button class="btn btn-primary noteBtn" data-id={{this._id}} type="button" data-toggle="modal" data-target="#noteModal"><i class="fas fa-pen"></i> Notes</button>
     </div>
 </div>

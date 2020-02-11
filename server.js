@@ -35,8 +35,8 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 //     mongoose.connection.db.dropDatabase();
 // });
 // ----------------------------------------------------
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+require('./routes/routes')(app);
+
 // ----------------------------------------------------
 
 app.listen(PORT, function () {

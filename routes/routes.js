@@ -68,33 +68,21 @@ module.exports = app => {
                         .attr('src');
 
                     db.Article.findOne(result, function (err, res) {
-                        if (err) console.log(err);
-                        else {
                             db.Article.create(result)
-                                .then(dbArticle => {
-                                    //console.log(dbArticle);
-                                })
-                                .catch(err => {
-                                    console.log(err);
-                                });
-                        }
-                    });
+                    }).catch(err => {
+                        res.json(err);
+                    })
                 });
-            }).catch(error => {
-                console.log(error);
             })
-        res.send('Scrape complete');
     });
 
     // Get all articles from db
-    app.get("/display/scraped", (req, res) => {
-        db.Article.find({}).sort('-date')
+    app.get("/", (req, res) => {
+        db.Article.find({}).sort('_id')
             .then(dbArticle => {
-                // res.json(dbArticle);
                 res.render('index', {
                     articles: dbArticle
-                })
-
+                });
             }).catch(err => {
                 res.json(err);
             });
@@ -127,23 +115,30 @@ module.exports = app => {
     });
 
     // Get all saved articles from db
-    app.get('/display/saved', (req, res) => {
+    app.get('/saved', (req, res) => {
         db.Article.find({
             saved: true
         }).then(data => {
-            res.json(data);
+            res.render('saved', {
+                articles: data
+            });
         }).catch(err => {
             res.json(err);
         });
     });
 
-
     // Display article notes
     app.get('/notes/display/:articleId', function (req, res) {
         db.Article.findById(req.params.articleId)
-            .populate('note')
-            .then(dbArticle => {
-                res.json(dbArticle);
+            .then(data => {
+                if (!data.length) {
+                    console.log('no note');   
+                }
+                else {
+                    for (let i = 0; i < data.length; i++) {
+                        
+                    }
+                }
             })
             .catch(err => {
                 res.json(err);
@@ -182,5 +177,10 @@ module.exports = app => {
         db.Note.findByIdAndRemove(req.params.noteId, (err, note) => {
             if (err) console.log(err);
         });
+    });
+
+    // 404
+    app.get('*', (req, res) => {
+        res.render('404');
     });
 }
