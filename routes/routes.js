@@ -140,11 +140,12 @@ module.exports = app => {
 
     // Add note to article
     app.post('/notes/new/:articleId', function (req, res) {
-        console.log(req.body);
+        //const id = req.params.articleId;
         db.Note.create(req.body)
             .then(dbNote => {
+                console.log(dbNote);
                 return db.Article.findOneAndUpdate({
-                    _id: req.params.articleId
+                    _id: dbNote._id
                 },
                     {
                         $push: {
@@ -152,12 +153,11 @@ module.exports = app => {
                         }
                     }
                 )
-
             })
-            .then(function (dbArticle) {
-                // console.log(dbArticle);
+            .then(data => {
+                //console.log(data);
             })
-            .catch(function (err) {
+            .catch(err => {
                 res.json(err);
             });
     });

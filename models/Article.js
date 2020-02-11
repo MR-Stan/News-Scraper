@@ -40,11 +40,8 @@ const ArticleSchema = new Schema({
 
     // Array of notes
     note: [{
-        type: {
-            type: Schema.Types.ObjectId,
-            ref: 'Note'
-        },
-        article: String
+        type: Schema.Types.ObjectId,
+        ref: "Note"
     }],
 
     // Keeps track of whether or not the article's been saved

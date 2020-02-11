@@ -41,10 +41,7 @@ $('.unsaveBtn').click(function (e) {
 });
 
 // Open note modal and display notes
-$('.noteBtn').click(function (e) {
-    e.preventDefault();
-    console.log('click');
-
+$('.noteBtn').click(function () {
     const articleId = $(this).attr('data-id');
     currentArticle = articleId;
     $.ajax({
@@ -57,16 +54,16 @@ $('.noteBtn').click(function (e) {
                     .append('<h5/>').text('There are no notes associated with this article.');
             }
             else {
-                for (let i = 0; i < data.length; i++) {
+                $('.modal-body').empty();
+                for (let i = 0; i < response.length; i++) {
                     $('.modal-body')
                         .append('<div class="card"/>')
                         .append('<div class="card-body"/>')
                         .append('<p class="card-text"/>')
-                        .text(data.body);
+                        .text(response.body);
                 }
             }
         }
-
     })
 });
 
@@ -74,11 +71,13 @@ var currentArticle = '';
 
 $('.addNoteBtn').click(function () {
     const articleId = currentArticle;
-    console.log(articleId);
+    const body = $('#bodyInput').val();
+    $('#bodyInput').val("");
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '/notes/new/' + articleId,
+        data: body
+
     });
-    // after save btn click clear fields 
 });
 
